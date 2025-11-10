@@ -1,6 +1,6 @@
 <?php
     require_once './models/serie_model.php';
-
+    require_once './views/api_view.php';
     class SerieApiController{
         private $model;
         private $view;
@@ -9,16 +9,6 @@
             $this->model = new ModelSerie();
             $this->view = new ApiView();
         }
-        
 
     }
-
-
-
-
-
-
-
-
-
 ?>

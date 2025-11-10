@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-11-2025 a las 18:33:44
+-- Tiempo de generación: 10-11-2025 a las 19:26:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -90,6 +90,7 @@ CREATE TABLE `series` (
   `cant_temporadas` int(255) NOT NULL,
   `sinopsis` text NOT NULL,
   `clasificación` int(99) NOT NULL,
+  `fecha_estreno` date NOT NULL,
   `img` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,9 +98,9 @@ CREATE TABLE `series` (
 -- Volcado de datos para la tabla `series`
 --
 
-INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `img`) VALUES
-(1, 'The Office', 'Comedia', 9, 'La serie narra el día a día de los empleados de una oficina situada en Scranton (Pensilvania), sucursal de la empresa papelera ficticia Dunder Mifflin, y consta de 201 episodios repartidos en nueve temporadas.', 16, 'https://hips.hearstapps.com/hmg-prod/images/season-5-pictured-ed-helms-as-andy-bernard-phyllis-smith-as-news-photo-138448895-1565378733.jpg'),
-(2, 'Bon appetit majestad', 'Romance', 1, 'Tras viajar en el tiempo a los días de la dinastía Joseon, una talentosa chef conoce a un rey tirano, cuyo paladar conquista. Pero sobrevivir exigirá desafíos reales.', 13, 'https://www.infobae.com/resizer/v2/YABCNXJMOVCJ5M7L2VRMVME5Y4.jpg?auth=f583aa4bd921053ad25f28ee20b118e7acc4424587dc8e1ed5e27e14a049c463&smart=true&width=1200&height=630&quality=85');
+INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `fecha_estreno`, `img`) VALUES
+(1, 'The Office', 'Comedia', 9, 'La serie narra el día a día de los empleados de una oficina situada en Scranton (Pensilvania), sucursal de la empresa papelera ficticia Dunder Mifflin, y consta de 201 episodios repartidos en nueve temporadas.', 16, '0000-00-00', 'https://hips.hearstapps.com/hmg-prod/images/season-5-pictured-ed-helms-as-andy-bernard-phyllis-smith-as-news-photo-138448895-1565378733.jpg'),
+(2, 'Bon appetit majestad', 'Romance', 1, 'Tras viajar en el tiempo a los días de la dinastía Joseon, una talentosa chef conoce a un rey tirano, cuyo paladar conquista. Pero sobrevivir exigirá desafíos reales.', 13, '0000-00-00', 'https://www.infobae.com/resizer/v2/YABCNXJMOVCJ5M7L2VRMVME5Y4.jpg?auth=f583aa4bd921053ad25f28ee20b118e7acc4424587dc8e1ed5e27e14a049c463&smart=true&width=1200&height=630&quality=85');
 
 -- --------------------------------------------------------
 

@@ -1,12 +1,12 @@
 <?php
-    require_once './app/models/serie_model.php';
+    require_once './app/models/series.model.php';
     require_once './app/views/api_view.php';
     class SerieApiController{
         private $model;
         private $view;
 
         function __construct(){
-            $this->model = new ModelSerie();
+            $this->model = new SeriesModel();
             $this->view = new ApiView();
         }
 
@@ -41,5 +41,21 @@
                 return null;
             }
         }
+
+        // /api/series/:ID
+        public function getSerieByID ($req, $res){
+            //obtengo el ID desde la ruta
+            $id = $req->params->id;
+
+            //obtengo la serie de la db
+            $serie = $this->model->getSerie($id);
+
+            if (!$serie){
+                return $this->view->response("Ups! La serie que buscas no existe ):", 404);
+            }
+
+            return $this->view->response($serie);
+        }
+
     }
 ?>

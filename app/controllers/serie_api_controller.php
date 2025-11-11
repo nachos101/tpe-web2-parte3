@@ -14,13 +14,12 @@
             if (isset($req->query->orden) && isset($req->query->atributo)){
                 $orden = $req->query->orden;
                 $atributo = $req->query->atributo;
-                $series = getByOrder($orden,$atributo);
-                    return $this->view->response($series,200);
-                
+                $series = $this->getByOrder($orden,$atributo);
+                    return $res->json($series,200);
             }
             else {
                 $series = $this->model->getSeries();
-                return $this->view->response($series,200);
+                return $res->json($series,200);
             }
         }
         private function getByOrder($orden,$atributo){
@@ -54,7 +53,7 @@
                 return $this->view->response("Ups! La serie que buscas no existe ):", 404);
             }
 
-            return $this->view->response($serie);
+            return $res->json($serie,200);
         }
 
     }

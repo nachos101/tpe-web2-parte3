@@ -6,6 +6,9 @@
     require_once './app/controllers/auth-api.controller.php';
 
     $router = new Router();
+    $router->addRoute('auth/login',     'GET',     'AuthApiController',    'login');
+
+
     $router->addMiddleware(new JWTMiddleware());
     //endpoints
     $router->addRoute('series','GET','SerieApiController','getSeries');

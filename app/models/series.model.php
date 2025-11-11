@@ -20,7 +20,7 @@ class SeriesModel extends Model{
 
     }
 
-    function getAllSeries (){
+    function getSeries (){
         //preparo y ejecuto la consulta.
         $query = $this->db->prepare('SELECT * FROM series');
         $query->execute();

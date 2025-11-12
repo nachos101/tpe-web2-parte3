@@ -50,11 +50,54 @@
             $serie = $this->model->getSerie($id);
 
             if (!$serie){
-                return $this->view->response("Ups! La serie que buscas no existe ):", 404);
+                return $res->json("Ups! La serie que buscas no existe ):", 404);
             }
 
             return $res->json($serie,200);
         }
+
+        //POST /api/serie
+        public function addSerie ($req, $res){
+            if (!$req->body->titulo ||
+                !$req->body->genero ||
+                !$req->body->cant_temporadas ||
+                !$req->body->sinopsis ||
+                !$req->body->clasificación ||
+                !$req->body->fecha_estreno ||
+                !$req->body->img){
+
+                //algun campo no tiene datos
+                return $res->json('Error! x.x Faltan campos obligatorios', 400);
+            }
+            //obtengo los datos del body del $req
+            $title = $req->body->titulo;
+            $genre = $req->body->genero;
+            $seasons = $req->body->cant_temporadas;
+            $synopsis = $req->body->sinopsis;
+            $ageR = $req->body->clasificación;
+            $releaseDate = $req->body->fecha_estreno;
+            $img = $req->body->img;
+
+            //pido al model que la inserte
+            $serie = $this->model->insertSerie($title, $genre, $seasons, $synopsis, $ageR, $releaseDate, $img);
+
+            if (!$serie){
+                return $res->json('Error! x.x no se pudo insertar la tarea', 500);
+            }
+
+            //la devuelvo junto con un mensaje que confirme el exito del post
+            return $res->json("La serie con el id= $serie fue agregada con exito.", 201);
+        }
+
+        /* {
+            "titulo" :
+            "genero" :
+            "cant_temporadas" :
+            "sinopsis" :
+            "clasificación" :
+            "fecha_estreno" :
+            "img" :
+            } */
 
         //PUT
         public function editSerie($req, $res){

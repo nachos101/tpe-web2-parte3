@@ -37,10 +37,15 @@ class SeriesModel extends Model{
         return $serie;
     }
 
-        function insertSerie ($title, $genre, $seasons, $synopsis, $ageR, $img){
-        $query = $this->db->prepare('INSERT INTO `series` (`titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `img`)
-                VALUES (?,?,?,?,?.?)');
-        $query->execute([$title, $genre, $seasons, $synopsis, $ageR, $img]);
+    function insertSerie ($title, $genre, $seasons, $synopsis, $ageR, $date, $img){
+        $query = $this->db->prepare('INSERT INTO `series` (`titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `fecha_estreno` ,`img`)
+                VALUES (?,?,?,?,?,?,?)');
+        $query->execute([$title, $genre, $seasons, $synopsis, $ageR, $date, $img]);
+                
+        //pido el id del ultimo insert para poder devolverlo
+        $id = $this->db->lastInsertId();
+
+        return $id;
     }
 
     function updateSerie ($id,$title, $genre, $seasons, $synopsis, $ageR, $fecha, $img){

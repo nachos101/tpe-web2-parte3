@@ -48,10 +48,10 @@ class SeriesModel extends Model{
         return $id;
     }
 
-    function updateSerie ($id,$title, $genre, $seasons, $synopsis, $ageR, $fecha, $img){
-        $query = $this->db->prepare('UPDATE `series` SET titulo = ?, genero = ?, cant_temporadas = ?, sinopsis = ?, clasificación = ?, fecha_estreno = ?, img = ? WHERE id_serie = ?');
-        $query->execute([$title, $genre, $seasons, $synopsis, $ageR, $fecha, $img,$id]);
-    }
+        function updateSerie ($id,$title, $genre, $seasons, $synopsis, $ageR, $fecha, $img){
+            $query = $this->db->prepare('UPDATE `series` SET titulo = ?, genero = ?, cant_temporadas = ?, sinopsis = ?, clasificacion = ?, fecha_estreno = ?, img = ? WHERE id_serie = ?');
+            $query->execute([$title, $genre, $seasons, $synopsis, $ageR, $fecha, $img,$id]);
+        }
 
 
     function deleteSerie ($id){

@@ -102,15 +102,23 @@
         //PUT
         public function editSerie($req, $res){
             $id = $req->params->id;
-            $serie = $this->getSerieByID($id);
+            if (empty($id)){
+                return $res->json("no existe la serie",404);
+            }
+            if (!isset($req->body)){
+                return $res->json("no existe el req",404);
+            }
+            $serie = $this->model->getSerie($id);
             if (!$serie){
                 return $res->json("no existe la serie",404);
             }
+                
             if(empty($req->body->titulo) || empty($req->body->genero) || empty($req->body->cant_temporadas)
                 || empty($req->body->sinopsis) || empty($req->body->clasificacion) || empty($req->body->fecha_estreno)
             || empty($req->body->img)){
                 return $res->json("hay algun/nos parametro/s vacio/s",404);
             }
+            
             $titulo = $req->body->titulo;
             $genero = $req->body->genero;
             $cantTemporadas = $req->body->cant_temporadas;
@@ -120,7 +128,7 @@
             $img = $req->body->img;
 
             $this->model->updateSerie($id,$titulo,$genero,$cantTemporadas,$sinopsis,$clasificacion,$fechaEstreno,$img);
-            $serieActualizada = $this->getSerieByID($id);
+            $serieActualizada = $this->model->getSerie($id);
             return $res->json($serieActualizada,201);
         }
 

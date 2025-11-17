@@ -11,20 +11,82 @@
         }
 
         public function getSeries($req, $res){
+            $filtro = [];
+            $parametros = $req->query;
+            foreach ($parametros as $key => $valor) {
+                if ($key !== 'orden' && $key !== 'atributo'){
+                    $filtro[$key] = $valor;
+                }
+            }
+
+            if (!empty($filtro)){
+                $series = $this->filtrarSeries($filtro);
+            } else {
+                $series = $this->model->getSeries();
+            }
+
             if (isset($req->query->orden) && isset($req->query->atributo)){
                 //en caso de venir con mayusculas se transforma a min para evitar errores
                 $orden = strtolower($req->query->orden);
                 $atributo = strtolower($req->query->atributo);
-                $series = $this->getByOrder($orden,$atributo);
+                $series = $this->getByOrder($series,$orden,$atributo);
                     return $res->json($series,200);
             }
             else {
-                $series = $this->model->getSeries();
                 return $res->json($series,200);
             }
         }
-        private function getByOrder($orden,$atributo){
+
+        private function filtrarSeries($filtros){
             $series = $this->model->getSeries();
+            $seriesFiltradas = [];
+            $columnas = [
+                'titulo' => 'titulo', 
+                'cant_temporadas' => 'cantidad_temporadas',
+                'genero' => 'genero',
+                'fecha_estreno' => 'fecha_estreno'];
+    
+            foreach ($series as $serie) {
+                $coincide = false;
+        
+            foreach ($filtros as $parametro => $valorBuscado) {
+                $parametro = strtolower($parametro);
+                $valorBuscado = strtolower($valorBuscado);
+            
+                $columna = isset($columnas[$parametro]) ? $columnas[$parametro] : $parametro;
+            
+                if (property_exists($serie, $columna) || isset($serie->$columna)) {
+                    $valorSerie = $serie->$columna;
+                
+                    $valorSerieStr = strtolower(strval($valorSerie));
+                
+                if (is_numeric($valorSerie) && is_numeric($valorBuscado)) {
+                    
+                    if ($valorSerie == $valorBuscado) {
+                        $coincide = true;
+                        break; 
+                    }
+                } else {
+                    
+                    if (strpos($valorSerieStr, $valorBuscado) !== false) {
+                        $coincide = true;
+                        break; 
+                    }
+                }
+            }
+        }
+        
+        if ($coincide) {
+            $seriesFiltradas[] = $serie;
+        }
+    }
+    
+    return $seriesFiltradas;
+                        
+        }
+
+        private function getByOrder($series,$orden,$atributo){
+            //$series = $this->model->getSeries();
 
             if ($orden == 'asc') {                    
                     $order = SORT_ASC;

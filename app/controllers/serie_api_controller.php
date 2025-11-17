@@ -12,8 +12,9 @@
 
         public function getSeries($req, $res){
             if (isset($req->query->orden) && isset($req->query->atributo)){
-                $orden = $req->query->orden;
-                $atributo = $req->query->atributo;
+                //en caso de venir con mayusculas se transforma a min para evitar errores
+                $orden = strtolower($req->query->orden);
+                $atributo = strtolower($req->query->atributo);
                 $series = $this->getByOrder($orden,$atributo);
                     return $res->json($series,200);
             }
@@ -28,7 +29,7 @@
             if ($orden == 'asc') {                    
                     $order = SORT_ASC;
                 }
-                else if ($orden == 'dsc'){
+                else if ($orden == 'desc'){
                     $order = SORT_DESC;
                 }
             if ($atributo == 'titulo' || $atributo == 'genero' || $atributo == 'cant_temporadas' || $atributo == 'fecha_estreno'){
@@ -37,7 +38,7 @@
               return $series;
             }
             else {
-                return null;
+                return $res->json("Error, no existe la serie",404);
             }
         }
 
@@ -52,19 +53,18 @@
             if (!$serie){
                 return $res->json("Ups! La serie que buscas no existe ):", 404);
             }
-
             return $res->json($serie,200);
         }
 
         //POST /api/serie
         public function addSerie ($req, $res){
-            if (!$req->body->titulo ||
-                !$req->body->genero ||
-                !$req->body->cant_temporadas ||
-                !$req->body->sinopsis ||
-                !$req->body->clasificación ||
-                !$req->body->fecha_estreno ||
-                !$req->body->img){
+            if (empty($req->body->titulo) ||
+                empty($req->body->genero) ||
+                empty($req->body->cant_temporadas) ||
+                empty($req->body->sinopsis) ||
+                empty($req->body->clasificación) ||
+                empty($req->body->fecha_estreno) ||
+                empty($req->body->img)){
 
                 //algun campo no tiene datos
                 return $res->json('Error! x.x Faltan campos obligatorios', 400);
@@ -129,7 +129,7 @@
 
             $this->model->updateSerie($id,$titulo,$genero,$cantTemporadas,$sinopsis,$clasificacion,$fechaEstreno,$img);
             $serieActualizada = $this->model->getSerie($id);
-            return $res->json($serieActualizada,201);
+            return $res->json($serieActualizada,200);
         }
 
     }

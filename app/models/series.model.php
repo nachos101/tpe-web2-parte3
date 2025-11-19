@@ -66,5 +66,46 @@ class SeriesModel extends Model{
         
         return $serie;
     }
+           
+    function getSeriesFiltered ($filters = []){
+
+        $params = [];
+        $sql = "SELECT * FROM SERIES ";
+
+        foreach ($filters as $filter => $value) {
+            if ($filter == 'genero' ||
+                $filter == 'titulo' ||
+                $filter == 'clasificación'){
+            
+                if (empty ($params)){
+                    if ($filter == 'clasificación') {
+                        $sql .= "WHERE clasificación >= ?";
+                        $params[] = $value;
+                    }
+
+                    $sql.= "WHERE $filter LIKE ?";
+                    $params[] = '%' . $value . '%';
+                }
+
+                if ($filter == 'clasificación'){
+                    $sql.= " AND $filter >= ?";
+                    $params[] = '%' . $value . '%';
+                }
+
+                $sql.= " AND $filter LIKE ?";
+                $params[] = '%' . $value . '%';
+
+            }    
+        }
+        
+        $query = $this->db->prepare($sql);
+
+        $query->execute($params);
+
+        $series = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $series;
+
+    }
 
 }

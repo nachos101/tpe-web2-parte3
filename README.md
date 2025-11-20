@@ -31,3 +31,4 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 # Ejemplo de body
 ```json
 {"id_serie":1,"titulo":"The Office","genero":"Romance","cant_temporadas":7,"sinopsis":"AAAAAA","clasificacion":12,"fecha_estreno":"2006-09-10","img":"https:\/\/www.google.com\/url?sa=i&url=https%3A%2F%2Fplay.mercadolibre.com.ar%2Fver%2Fthe-office%2F448af4eee6f24a50ae89d197e04cd0b0&psig=AOvVaw36kh9WT0uSu2d2eCWKdrUO&ust=1763040361936000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKDglabb7JADFQAAAAAdAAAAABAE"}
+```

@@ -70,7 +70,7 @@ class SeriesModel extends Model{
     function getSeriesFiltered ($filters = []){
 
         $params = [];
-        $sql = "SELECT * FROM SERIES ";
+        $sql = "SELECT * FROM series ";
 
         foreach ($filters as $filter => $value) {
             if ($filter == 'genero' ||

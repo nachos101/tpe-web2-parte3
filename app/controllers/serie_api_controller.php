@@ -11,7 +11,7 @@
         }
 
         public function getSeries($req, $res){
-            
+        
             //filtrado
             if (!empty(((array)$req->query))){
                 $filters =  (array)$req->query;
@@ -23,8 +23,8 @@
                 }
                /* dejar este return hace que nunca entre a ver orden/atributo
                return $res->json($series,200); */
-            }
-
+            } 
+            
             //ordenamiento
             if (isset($req->query->orden) && isset($req->query->atributo)){
                 //en caso de venir con mayusculas se transforma a min para evitar errores
@@ -34,11 +34,12 @@
                     return $res->json($series,200);
             }
             else {
+                $series = $this->model->getSeries();
                 return $res->json($series,200);
             }
 
-            $series = $this->model->getSeries();
-            return $res->json($series,200);
+            /*$series = $this->model->getSeries();
+            return $res->json($series,200);*/
         }
 
 

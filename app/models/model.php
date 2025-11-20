@@ -74,7 +74,15 @@ INSERT INTO `capitulos` (`id_capitulo`, `id_temporada`, `num_capitulo`, `duracio
 (35, 2, 19, 21, 'Para celebrar su cumpleaños, Michael (Steve Carell, ganador de un premio Golden Globe) lleva al grupo de Dunder Mifflin a patinar en hielo.'),
 (36, 2, 20, 21, 'Cuando Dwight encuentra medio cigarrillo de marihuana en el estacionamiento de Dunder Mifflin, se pone su uniforme de sheriff voluntario e inicia una investigación completa.'),
 (37, 2, 21, 21, 'Se crea un caos cuando Michael se ocupa de los deberes de solución de conflictos de Recursos Humanos.'),
-(38, 2, 22, 29, 'En el último episodio de la temporada, Michael y el equipo de Dunder Mifflin organizan una Noche de Casino con fines benéficos.');
+(38, 2, 22, 29, 'En el último episodio de la temporada, Michael y el equipo de Dunder Mifflin organizan una Noche de Casino con fines benéficos.'),
+(39, 14, 1, 40, 'Sin contarle a su madre, Cameron, un honesto adolescente, sigue a su único amigo, Ray, al implacable mundo del entrenamiento militar para marines.'),
+(40, 14, 2, 40, 'Un ejercicio de entrenamiento tensa la amistad entre Cameron y Ray y obliga a los hermanos John y Cody a enfrentar los problemas familiares que llevaron a Parris Island.'),
+(41, 14, 3, 43, 'Cameron se esfuerza al máximo para demostrar su valía en un curso que refuerza la confianza. El pelotón recibe a un nuevo integrante. Barbara descubre los beneficios de la empatía.'),
+(42, 14, 4, 42, 'En una intensa semana de entrenamiento acuático, Ray lucha por mantenerse a flote, hasta que Cameron se sumerge en un arriesgado plan para evitar que su amigo se hunda.'),
+(45, 14, 5, 46, 'Las emociones se disparan cuando Cameron y compañía buscan dar en el blanco durante el entrenamiento con rifles. El sargento Sullivan queda en la mira en una situación inesperada.'),
+(46, 14, 6, 40, 'El pelotón enfrenta el precio que se paga por ser un marine. Mientras la capitana Fajardo pone al día al sargento mayor McKinnon, la cocina se convierte en un campo de batalla.'),
+(47, 14, 7, 45, 'Comienza el entrenamiento de combate, y un despiadado juego mental lleva a un recluta al extremo. Una violación del protocolo siembra conflictos en las filas.'),
+(48, 14, 8, 50, 'Los reclutas se someten al desafío definitivo: la prueba de fuego. Cuando su resistencia es llevada al límite, solo la hermandad les permitirá llegar a la meta.');
 
 -- --------------------------------------------------------
 
@@ -88,8 +96,8 @@ CREATE TABLE `series` (
   `genero` varchar(1000) NOT NULL,
   `cant_temporadas` int(255) NOT NULL,
   `sinopsis` text NOT NULL,
-  `clasificacion` int(99) NOT NULL,
-  `fecha_estreno` date NOT NULL,
+  `clasificación` int(99) NOT NULL,
+  `fecha_estreno` date DEFAULT NULL,
   `img` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,9 +105,17 @@ CREATE TABLE `series` (
 -- Volcado de datos para la tabla `series`
 --
 
-INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificacion`, `fecha_estreno`, `img`) VALUES
-(1, 'The Office', 'Romance', 7, 'AAAAAA', 12, '2006-09-10', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fplay.mercadolibre.com.ar%2Fver%2Fthe-office%2F448af4eee6f24a50ae89d197e04cd0b0&psig=AOvVaw36kh9WT0uSu2d2eCWKdrUO&ust=1763040361936000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKDglabb7JADFQAAAAAdAAAAABAE'),
-(2, 'Bon appetit majestad', 'Romance', 1, 'Tras viajar en el tiempo a los días de la dinastía Joseon, una talentosa chef conoce a un rey tirano, cuyo paladar conquista. Pero sobrevivir exigirá desafíos reales.', 13, '0000-00-00', 'https://www.infobae.com/resizer/v2/YABCNXJMOVCJ5M7L2VRMVME5Y4.jpg?auth=f583aa4bd921053ad25f28ee20b118e7acc4424587dc8e1ed5e27e14a049c463&smart=true&width=1200&height=630&quality=85');
+INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `fecha_estreno`, `img`) VALUES
+(1, 'The Office', 'Comedia', 9, 'La serie narra el día a día de los empleados de una oficina situada en Scranton (Pensilvania), sucursal de la empresa papelera ficticia Dunder Mifflin, y consta de 201 episodios repartidos en nueve temporadas.', 16, '2005-03-25', 'https://hips.hearstapps.com/hmg-prod/images/season-5-pictured-ed-helms-as-andy-bernard-phyllis-smith-as-news-photo-138448895-1565378733.jpg'),
+(2, 'Bon appetit majestad', 'Romance', 1, 'Tras viajar en el tiempo a los días de la dinastía Joseon, una talentosa chef conoce a un rey tirano, cuyo paladar conquista. Pero sobrevivir exigirá desafíos reales.', 13, '2025-08-23', 'https://www.infobae.com/resizer/v2/YABCNXJMOVCJ5M7L2VRMVME5Y4.jpg?auth=f583aa4bd921053ad25f28ee20b118e7acc4424587dc8e1ed5e27e14a049c463&smart=true&width=1200&height=630&quality=85'),
+(12, 'Reclutas', 'Drama', 1, 'Son marginados y no encajan, pero, si sobreviven al entrenamiento basico, seran marines.', 16, '2025-10-09', 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84623bb5ec260a3062245c7506'),
+(13, 'Tu siempre estuviste ahi', 'Drama', 1, 'Dos mujeres planean ponerle fin a un matrimonio abusivo con un asesinato, pero la llegada de un visitante inesperado amenaza con arruinarlo todo.', 16, '2025-11-07', 'https://elcomercio.pe/resizer/v2/7JZXJRKAARGZ7JB3EC5GUSHKGY.jpg?auth=2725fc5571aa84ae98b4f4fdd09f4f984465cb749656f4817df895f41d7a1327&width=2400&height=1620&quality=75&smart=true'),
+(14, 'Glow up', 'Reality', 5, 'En esta competencia, un grupo de aspirantes a maquilladores se esmeran por superar coloridos retos y ganar su gran oportunidad profesional en la industria de la belleza.', 13, '2019-03-06', 'https://images.ecestaticos.com/dJDP0SpqcfQzHfL8vOfca0hu0E0=/0x0:0x0/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F1e2%2Fef8%2F78c%2F1e2ef878ce4c1e7669e718325905d727.jpg'),
+(15, 'Un amor predestinado', 'Comedia', 1, 'Un romance irresistible entre una mujer que obtuvo un libro prohibido que fue completamente sellado hace 300 años y un hombre que se convirtió en víctima del libro prohibido.', 13, '2023-08-23', 'https://i.ytimg.com/vi/rd8X3NhusSw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB3voaEDHBfSY9fNIew3qBdjcG_wg'),
+(16, 'Los tipos malos: Malos comienzos', 'Infantil', 1, 'En esta serie precuela de las populares peliculas, una pandilla criminal de animaes lleva a cabo una serie de atracos audaces para demostrar que son los mas malos.', 10, '2025-11-06', 'https://i.ytimg.com/vi/Mau7ucTGbUE/maxresdefault.jpg'),
+(17, 'Asterix y Obelix: El combate de los jefes', 'Infantil', 1, 'Cuando el druida de la aldea olvida cómo preparar su poción mágica, Astérix y Obélix deben proteger a los galos, porque César quiere usar una antigua ley en su contra.', 10, '2025-04-30', 'https://i.blogs.es/7c203d/el-combate-de-los-jefes/500_333.jpeg'),
+(18, 'Pasteleros contra el tiempo', 'Reality', 2, 'En una carrera contra el tiempo, seis duplas de reposteros mezclan innovación y tradición para crear maravillas comestibles. ¿Quiénes probarán la dulce victoria?\r\n', 10, '2024-07-12', 'https://m.media-amazon.com/images/M/MV5BMTc2Nzc1NzgtZjYzZi00YWQxLWEyZjUtZDQ3OTYzM2U4MGJjXkEyXkFqcGc@._V1_.jpg'),
+(19, 'Heartstopper', 'Romance', 3, 'Charlie y Nick descubren que su improbable amistad podría ser algo más mientras sortean la escuela y el amor en esta serie sobre la adolescencia.\r\n', 13, '2022-04-22', 'https://images.justwatch.com/poster/321191627/s718/heartstopper.jpg');
 
 -- --------------------------------------------------------
 
@@ -131,7 +147,22 @@ INSERT INTO `temporadas` (`id_temporada`, `id_serie`, `num_temporada`, `cant_cap
 (9, 1, 8, 19, 'oaaaa'),
 (11, 1, 9, 15, 'oaaaa'),
 (12, 1, 10, 10, 'oaaaa'),
-(13, 1, 5, 22, 'OAA');
+(13, 1, 5, 22, 'OAA'),
+(14, 12, 1, 8, 'Por impulso, un adolescente hostigado se alista en el Cuerpo de Marines de EE. UU., donde encuentra un propósito y una hermandad inesperada dentro del singular grupo de reclutas.'),
+(15, 14, 1, 8, 'En esta competencia, un grupo de aspirantes a maquilladores se esmeran por superar coloridos retos y ganar su gran oportunidad profesional en la industria de la belleza.'),
+(16, 14, 2, 8, 'Nuevas brochas y pinceles'),
+(17, 14, 3, 8, '¿Listos para brillar?'),
+(18, 14, 4, 8, 'El grupo busca inspiración para la campaña'),
+(19, 14, 5, 8, 'Diez rostros nuevos con habilidades y personalidades únicas'),
+(20, 13, 1, 8, 'Dos mujeres planean ponerle fin a un matrimonio abusivo con un asesinato, pero la llegada de un visitante inesperado amenaza con arruinarlo todo.'),
+(21, 15, 1, 10, 'Víctima de siglos de maldición, un abogado se involucra con una empleada pública que tiene la llave de su libertad, lo que despierta un inesperado romance.\r\n'),
+(22, 16, 1, 9, '¿Cómo fue que los Tipos Malos empezaron en el mundo del crimen? Esta divertida serie precuela tiene la respuesta.'),
+(23, 17, 1, 5, 'Cuando el druida de la aldea olvida cómo preparar su poción mágica, Astérix y Obélix deben proteger a los galos, porque César quiere usar una antigua ley en su contra.'),
+(24, 18, 1, 6, 'Los competidores exprimen al máximo su creatividad'),
+(25, 18, 2, 6, 'Nuevas caras, nuevos pasteles.'),
+(26, 19, 1, 8, 'Un flechazo irresistible lleva a Charlie, un chico tímido atrapado en una relación secreta, a unirse al equipo de rugby del atleta más popular de la escuela.'),
+(27, 19, 2, 8, 'Nick —en una relación cada vez más madura con Charlie— considera contarle a Imogen que es gay, pero es mucho más difícil de lo que creía. Elle intenta coquetear con Tao.'),
+(28, 19, 3, 8, 'Durante un paseo a la playa, Charlie se muere por revelarle a Nick lo que siente, pero Nick también tiene algo que decir. Tao planea tener un verano lleno de romance.');
 
 -- --------------------------------------------------------
 
@@ -150,7 +181,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`ID`, `user_name`, `password`) VALUES
-(1, 'webadmin', '$2a$12$sueSEU0qRVxmHEMjz7eMae4pkFdf20gdVUeaH8Yd1BdC0kBMNvLtG');
+(1, 'webadmin', '$password');
 
 --
 -- Índices para tablas volcadas
@@ -190,19 +221,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `capitulos`
 --
 ALTER TABLE `capitulos`
-  MODIFY `id_capitulo` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_capitulo` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `series`
 --
 ALTER TABLE `series`
-  MODIFY `id_serie` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_serie` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `temporadas`
 --
 ALTER TABLE `temporadas`
-  MODIFY `id_temporada` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_temporada` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

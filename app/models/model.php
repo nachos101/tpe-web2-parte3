@@ -96,7 +96,7 @@ CREATE TABLE `series` (
   `genero` varchar(1000) NOT NULL,
   `cant_temporadas` int(255) NOT NULL,
   `sinopsis` text NOT NULL,
-  `clasificación` int(99) NOT NULL,
+  `clasificacion` int(99) NOT NULL,
   `fecha_estreno` date DEFAULT NULL,
   `img` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -105,7 +105,7 @@ CREATE TABLE `series` (
 -- Volcado de datos para la tabla `series`
 --
 
-INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `fecha_estreno`, `img`) VALUES
+INSERT INTO `series` (`id_serie`, `titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificacion`, `fecha_estreno`, `img`) VALUES
 (1, 'The Office', 'Comedia', 9, 'La serie narra el día a día de los empleados de una oficina situada en Scranton (Pensilvania), sucursal de la empresa papelera ficticia Dunder Mifflin, y consta de 201 episodios repartidos en nueve temporadas.', 16, '2005-03-25', 'https://hips.hearstapps.com/hmg-prod/images/season-5-pictured-ed-helms-as-andy-bernard-phyllis-smith-as-news-photo-138448895-1565378733.jpg'),
 (2, 'Bon appetit majestad', 'Romance', 1, 'Tras viajar en el tiempo a los días de la dinastía Joseon, una talentosa chef conoce a un rey tirano, cuyo paladar conquista. Pero sobrevivir exigirá desafíos reales.', 13, '2025-08-23', 'https://www.infobae.com/resizer/v2/YABCNXJMOVCJ5M7L2VRMVME5Y4.jpg?auth=f583aa4bd921053ad25f28ee20b118e7acc4424587dc8e1ed5e27e14a049c463&smart=true&width=1200&height=630&quality=85'),
 (12, 'Reclutas', 'Drama', 1, 'Son marginados y no encajan, pero, si sobreviven al entrenamiento basico, seran marines.', 16, '2025-10-09', 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84623bb5ec260a3062245c7506'),
@@ -257,6 +257,7 @@ ALTER TABLE `capitulos`
 ALTER TABLE `temporadas`
   ADD CONSTRAINT `temporadas_ibfk_1` FOREIGN KEY (`id_serie`) REFERENCES `series` (`id_serie`);
 COMMIT;
+
 
 
 END;

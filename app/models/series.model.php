@@ -29,7 +29,7 @@ class SeriesModel extends Model{
     }
 
     function insertSerie ($title, $genre, $seasons, $synopsis, $ageR, $date, $img){
-        $query = $this->db->prepare('INSERT INTO `series` (`titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificación`, `fecha_estreno` ,`img`)
+        $query = $this->db->prepare('INSERT INTO `series` (`titulo`, `genero`, `cant_temporadas`, `sinopsis`, `clasificacion`, `fecha_estreno` ,`img`)
                 VALUES (?,?,?,?,?,?,?)');
         $query->execute([$title, $genre, $seasons, $synopsis, $ageR, $date, $img]);
                 
@@ -67,11 +67,11 @@ class SeriesModel extends Model{
         foreach ($filters as $filter => $value) {
             if ($filter == 'genero' ||
                 $filter == 'titulo' ||
-                $filter == 'clasificación'){
+                $filter == 'clasificacion'){
             
                 if (empty ($params)){
-                    if ($filter == 'clasificación') {
-                        $sql .= "WHERE clasificación >= ?";
+                    if ($filter == 'clasificacion') {
+                        $sql .= "WHERE clasificacion >= ?";
                         $params[] = $value;
                     }
 
@@ -79,7 +79,7 @@ class SeriesModel extends Model{
                     $params[] = '%' . $value . '%';
                 }
 
-                if ($filter == 'clasificación'){
+                if ($filter == 'clasificacion'){
                     $sql.= " AND $filter >= ?";
                     $params[] = '%' . $value . '%';
                 }
@@ -96,7 +96,7 @@ class SeriesModel extends Model{
         }
 
         // paginado 
-        if ($limit != null && $limit > 0 && $offset != null){
+        if ($limit != null && $limit > 0 && is_numeric($offset)){
             $sql.= " LIMIT $limit Offset $offset";
         }
         

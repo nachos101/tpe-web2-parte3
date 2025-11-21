@@ -51,7 +51,6 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 
 ##Obtener token `GET`
 # Endpoint: `/api/auth/login`
-| Basic authentication| Valor | Tipo   | Descripción                                                                 | 
-|------------------|--------|-----------------------------------------------------------------------------|
+| Basic authentication | valor | tipo | descripcion |
 | `username` | webadmin | string | nombre de usuario |
 | `password` | admin | string | contraseña |

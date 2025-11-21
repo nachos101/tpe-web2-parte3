@@ -41,7 +41,7 @@
                 if (!in_array($atributo,$allowedAttrs)){
                     return $res->json("Atributo de ordenamiento erroneo",400);
                 }
-                if ($orden !== 'asc' || $orden !== 'desc'){    
+                if ($orden !== 'asc' && $orden !== 'desc'){    
                     return $res->json("Orden erroneo",400);
                 }
             }

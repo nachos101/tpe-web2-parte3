@@ -11,55 +11,52 @@
         }
 
         public function getSeries($req, $res){
+
+            $orden = null;
+            $atributo = null;
+
+            $filters = null;
         
+            $offset = null;
+            $limit = null;
             //filtrado
             if (!empty(((array)$req->query))){
                 $filters =  (array)$req->query;
                 if (!empty($filters)){
-                    $series = $this->model->getSeriesFiltered($filters);
+                    $series = $this->model->getSeries($filters);
                     if (empty($series)){
                         $res->json("Ups! No tenemos series que coincidan con tu busqueda ):", 404);
                     }
                 }
-               /* dejar este return hace que nunca entre a ver orden/atributo
-               return $res->json($series,200); */
             } 
             
             //ordenamiento
             if (isset($req->query->orden) && isset($req->query->atributo)){
                 //en caso de venir con mayusculas se transforma a min para evitar errores
                 $orden = strtolower($req->query->orden);
-                $atributo = strtolower($req->query->atributo);
-                $series = $this->getByOrder($series,$orden,$atributo);
-                    return $res->json($series,200);
-            }
-            else {
-                $series = $this->model->getSeries();
-                return $res->json($series,200);
-            }
-
-            /*$series = $this->model->getSeries();
-            return $res->json($series,200);*/
-        }
-
-
-        private function getByOrder($series,$orden,$atributo){
-            //$series = $this->model->getSeries();
-
-            if ($orden == 'asc') {                    
-                    $order = SORT_ASC;
+                $atributo = strtolower($req->query->atributo); 
+                if ($atributo == 'titulo' || $atributo == 'genero' || $atributo == 'genero' || $atributo == 'cant_temporadas'){
+                    if ($orden == 'asc' || $orden == 'desc'){    
+                    $series = $this->model->getSeries([],$orden,$atributo);
+                    }
+                    else {
+                        $res->json("No se espeficia ASC o DESC", 404);        
+                    }
                 }
-                else if ($orden == 'desc'){
-                    $order = SORT_DESC;
+            }
+
+            //paginado
+            if (isset($req->query->offset) && isset($req->query->limit)){
+                if (is_numeric($req->query->offset) && is_numeric($req->query->limit)){
+                    $offset = $req->query->offset;
+                    $limit = $req->query->limit;
+                    $series = $this->model->getSeries([],'','',$offset,$limit);
+                } else {
+                    $res->json("los valores no son numericos", 404);
                 }
-            if ($atributo == 'titulo' || $atributo == 'genero' || $atributo == 'cant_temporadas' || $atributo == 'fecha_estreno'){
-              $aux = array_column($series, $atributo);
-              array_multisort($aux, $order, $series);
-              return $series;
             }
-            else {
-                return $res->json("Error, no existe la serie",404);
-            }
+            $series = $this->model->getSeries($filters,$orden,$atributo);
+            return $res->json($series,200);
         }
 
         // /api/series/:ID

@@ -20,15 +20,6 @@ class SeriesModel extends Model{
 
     }
 
-    function getSeries (){
-        //preparo y ejecuto la consulta.
-        $query = $this->db->prepare('SELECT * FROM series');
-        $query->execute();
-        $series = $query->fetchAll(PDO::FETCH_OBJ);
-
-        return $series;
-    }
-
     function getSerieByGenre ($genre){
         $query = $this->db->prepare('SELECT * FROM series WHERE genero LIKE ?');
         $query->execute(['%'.$genre.'%']);
@@ -67,11 +58,12 @@ class SeriesModel extends Model{
         return $serie;
     }
            
-    function getSeriesFiltered ($filters = []){
+    function getSeries($filters = [], $orden = '', $atributo = '', $offset = '', $limit = ''){
 
         $params = [];
         $sql = "SELECT * FROM series ";
-
+        
+        // filtro
         foreach ($filters as $filter => $value) {
             if ($filter == 'genero' ||
                 $filter == 'titulo' ||
@@ -98,14 +90,24 @@ class SeriesModel extends Model{
             }    
         }
         
+        // agregar orden
+        if ($orden != null && $atributo != null){
+            $sql.= " ORDER BY $atributo $orden";
+        }
+
+        // paginado 
+        if ($limit != null && $limit > 0 && $offset != null){
+            $sql.= " LIMIT $limit Offset $offset";
+        }
+        
+        
         $query = $this->db->prepare($sql);
 
         $query->execute($params);
 
         $series = $query->fetchAll(PDO::FETCH_OBJ);
-
+                
         return $series;
-
     }
 
 }

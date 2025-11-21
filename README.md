@@ -17,8 +17,7 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 | `atributo, orden`| string | `atributo` = titulo, genero, cant_temporadas, fecha_estreno<br>`orden` = DESC, ASC    | Ordena resultados por campo y dirección                                     | `/api/series/?atributo=titulo&orden=DESC` |
 | `titulo`  | string | Heartstopper, Glow up, Reclutas, The Office, Un amor predestinado | Filtra resultados por campo y valor específico | `/api/series/?titulo=Reclutas` |
 | `genero` | string | Comedia, Drama, Infatil, Reality, Romance | Filtra resultados por campo y valor específico | `/api/series/?genero=Comedia` |
-| `cant_temporadas` | string | 1,2,3,4,5... | Filtra resultados por campo y valor específico | `/api/series/?cant_temporadas=2` |
-| `fecha_estreno` | string | 2025-8-23, 2006-08-15 | Filtra resultados por campo y valor específico | `/api/series/?fecha_estreno=2025-08-23` |
+| `clasificacion` | string | 14... | Filtra resultados por campo y valor específico | `/api/series/?clasificacion=14` |
 | `page, limit`    | number | `page` = 1,2,3...<br>`limit` = 1,2,3...                                 | Paginación y límite de resultados por página                                | `/api/series/?page=2&limit=3` |
 ## Obtener una serie GET
 # Endpoint: `/api/series/:id`
@@ -34,7 +33,7 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 
 # Ejemplo de body
 ```json
-{"id_serie":1,
+{
 "titulo":"The Office",
 "genero":"Romance",
 "cant_temporadas":7,
@@ -49,12 +48,6 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 | Parámetros       | Tipo   | Descripción                                                                 | 
 |------------------|--------|-----------------------------------------------------------------------------|
 | `id` | string | id de la serie a editar |
-
-## Eliminar una serie `DELETE`
-# Endpoint: `/api/series/:id`
-| Parámetros       | Tipo   | Descripción                                                                 | 
-|------------------|--------|-----------------------------------------------------------------------------|
-| `id` | string | id de la serie a eliminar |
 
 ## Obtener token `GET`
 # Endpoint: `/api/auth/login`

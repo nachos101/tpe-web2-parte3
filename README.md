@@ -26,7 +26,7 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 |------------------|--------|-----------------------------------------------------------------------------|
 | `id` | string | id de la serie a fetchear |
 
-##Agregar una serie `POST`
+## Agregar una serie `POST`
 # Endpoint: `/api/series/`
 | Parámetros       | Tipo   | Descripción                                                                 | 
 |------------------|--------|-----------------------------------------------------------------------------|
@@ -37,20 +37,21 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 {"id_serie":1,"titulo":"The Office","genero":"Romance","cant_temporadas":7,"sinopsis":"AAAAAA","clasificacion":12,"fecha_estreno":"2006-09-10","img":"https:\/\/www.google.com\/url?sa=i&url=https%3A%2F%2Fplay.mercadolibre.com.ar%2Fver%2Fthe-office%2F448af4eee6f24a50ae89d197e04cd0b0&psig=AOvVaw36kh9WT0uSu2d2eCWKdrUO&ust=1763040361936000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCKDglabb7JADFQAAAAAdAAAAABAE"}
 ```
 
-##Editar una serie `PUT`
+## Editar una serie `PUT`
 # Endpoint: `/api/series/:id`
 | Parámetros       | Tipo   | Descripción                                                                 | 
 |------------------|--------|-----------------------------------------------------------------------------|
 | `id` | string | id de la serie a editar |
 
-##Eliminar una serie `DELETE`
+## Eliminar una serie `DELETE`
 # Endpoint: `/api/series/:id`
 | Parámetros       | Tipo   | Descripción                                                                 | 
 |------------------|--------|-----------------------------------------------------------------------------|
 | `id` | string | id de la serie a eliminar |
 
-##Obtener token `GET`
+## Obtener token `GET`
 # Endpoint: `/api/auth/login`
-| Basic authentication | valor | tipo | descripcion |
-| `username` | webadmin | string | nombre de usuario |
-| `password` | admin | string | contraseña |
+| Parámetros       | Tipo   | Valores                                                                 | Descripción                                                                 |
+| -----------------|--------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `username`       | string | webadmin                                                                | nombre de usuario                                                           |
+| `password`       | string | admin                                                                   | contraseña                                                                  |

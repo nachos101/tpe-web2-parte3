@@ -15,9 +15,9 @@ En esta plataforma el usuario podra ver un catalogo de series, cada una con sus 
 | Parámetros       | Tipo   | Valores                                                                 | Descripción                                                                 | Ejemplo |
 |------------------|--------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|---------|
 | `atributo, orden`| string | `atributo` = titulo, genero, cant_temporadas, fecha_estreno<br>`orden` = DESC, ASC    | Ordena resultados por campo y dirección                                     | `/api/series/?atributo=titulo&orden=DESC` |
-| `titulo`  | string | Heartstopper, Glow up, Reclutas, The Office, Un amor predestinado | Filtra resultados por campo y valor específico | `/api/series/?titulo=Reclutas` |
-| `genero` | string | Comedia, Drama, Infatil, Reality, Romance | Filtra resultados por campo y valor específico | `/api/series/?genero=Comedia` |
-| `clasificacion` | string | 14... | Filtra resultados por campo y valor específico | `/api/series/?clasificacion=14` |
+| `titulo`  | string | Heartstopper, Glow up, Reclutas, The Office, Un amor predestinado | Filtra resultados por campo y valor con coincidencia parcial. | `/api/series/?titulo=Reclutas` |
+| `genero` | string | Comedia, Drama, Infantil, Reality, Romance | Filtra resultados por campo y valor con coincidencia parcial. | `/api/series/?genero=Comedia` |
+| `clasificacion` | int | 10, 13, 16, ... | Filtra resultados por campo y valor igual o mayor al buscado. | `/api/series/?clasificacion=13` |
 | `page, limit`    | number | `page` = 1,2,3...<br>`limit` = 1,2,3...                                 | Paginación y límite de resultados por página                                | `/api/series/?page=2&limit=3` |
 ## Obtener una serie GET
 # Endpoint: `/api/series/:id`

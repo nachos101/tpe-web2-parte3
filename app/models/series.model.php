@@ -73,20 +73,19 @@ class SeriesModel extends Model{
                     if ($filter == 'clasificacion') {
                         $sql .= "WHERE clasificacion >= ?";
                         $params[] = $value;
+                    }else{
+                        $sql.= "WHERE $filter LIKE ?";
+                        $params[] = '%' . $value . '%';
                     }
-
-                    $sql.= "WHERE $filter LIKE ?";
-                    $params[] = '%' . $value . '%';
                 }
 
                 if ($filter == 'clasificacion'){
                     $sql.= " AND $filter >= ?";
+                    $params[] = $value;
+                }else{
+                    $sql.= " AND $filter LIKE ?";
                     $params[] = '%' . $value . '%';
                 }
-
-                $sql.= " AND $filter LIKE ?";
-                $params[] = '%' . $value . '%';
-
             }    
         }
         

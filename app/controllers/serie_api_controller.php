@@ -30,6 +30,7 @@
                 if (isset($req->query->clasificacion)){
                     $filters['clasificacion'] = $req->query->clasificacion;
                 }
+
             } 
             
             //ordenamiento
@@ -54,7 +55,13 @@
                 $offset = ((int)$req->query->page-1) * (int)$req->query->limit;
                 $limit = $req->query->limit;
             }
+            
             $series = $this->model->getSeries($filters,$orden,$atributo,$offset,$limit);
+            
+            if (empty($series)) {
+                return $res->json("Ups! No tenemos series que coincidan con tu búsqueda ):", 404);
+            }
+            
             return $res->json($series,200);
         }
 
